@@ -1,0 +1,7 @@
+CREATE TABLE Teachers(
+TeacherId INT IDENTITY(1,1) NOT NULL,
+UserId INT NOT NULL,
+CONSTRAINT PK_Teachers PRIMARY KEY (TeacherId),
+CONSTRAINT FK_Teachers_Users FOREIGN KEY (UserId) REFERENCES Users(UserId),
+); 
+
