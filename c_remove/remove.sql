@@ -1,5 +1,6 @@
--- Turn off CONSTRAINT check
-EXEC sp_MSforeachtable 'ALTER TABLE ? NOCHECK CONSTRAINT ALL';
+-- ///////////
+-- TABLES ////
+-- ///////////
 
 -- Drop all CONSTRAINT
 DECLARE @sql NVARCHAR(MAX) = N'';
@@ -9,7 +10,6 @@ SELECT @sql += N'ALTER TABLE ' + QUOTENAME(OBJECT_SCHEMA_NAME(parent_object_id))
 FROM sys.foreign_keys;
 
 EXEC sp_executesql @sql;
-
 
 DROP TABLE IF EXISTS [StudentAssignmentLogs];
 DROP TABLE IF EXISTS [Users];
@@ -32,7 +32,3 @@ DROP TABLE IF EXISTS [AssignmentCriterias];
 DROP TABLE IF EXISTS [StudentAssignments];
 DROP TABLE IF EXISTS [StudentAssignmentAttachments];
 DROP TABLE IF EXISTS [StudentAssignmentCriterias];
-
-
--- Turn foreign key check back on
-EXEC sp_MSforeachtable 'ALTER TABLE ? WITH CHECK CHECK CONSTRAINT ALL';
